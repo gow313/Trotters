@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:intl/intl.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:trotters/default.dart';
@@ -28,7 +28,7 @@ class _homePageState extends State<homePage> {
             ListView(
               children: [
                 Container(
-                  height: screenHeight / 2.2,
+                  height: screenHeight / 2,
                   decoration: BoxDecoration(
                     gradient: appcolor,
                     borderRadius: BorderRadius.only(
@@ -238,7 +238,7 @@ class _homePageState extends State<homePage> {
                     itemCount: completedMatch.length,
                     itemBuilder: (context, i) {
                       return Container(
-                        margin: EdgeInsets.all(20.0),
+                        margin: EdgeInsets.all(25.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
@@ -308,6 +308,15 @@ class _homePageState extends State<homePage> {
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 )
+                              else if (completedMatch[i]["ScoreA"] ==
+                                  completedMatch[i]["ScoreB"])
+                                Text(
+                                  "Match Draw",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.blueAccent,
+                                      fontWeight: FontWeight.bold),
+                                )
                               else
                                 Text(
                                   "${completedMatch[i]["TeamB"]} Won",
@@ -344,7 +353,7 @@ List completedMatch = [
   },
   {
     "TeamA": "Mech",
-    "ScoreA": 3,
+    "ScoreA": 4,
     "TeamB": "Arch",
     "ScoreB": 4,
   },
