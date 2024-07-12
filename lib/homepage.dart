@@ -1,11 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:intl/intl.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:trotters/default.dart';
+import 'package:trotters/mongo.dart';
+import 'package:trotters/route/routing.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -43,27 +47,30 @@ class _homePageState extends State<homePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("asset/ronaldo.jpg"),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.grey,
+                  child: InkWell(
+                    onTap: () => Get.toNamed(AppRoute.admin),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("asset/ronaldo.jpg"),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "Cristiano Rolando",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "Admin",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -238,7 +245,7 @@ class _homePageState extends State<homePage> {
                     itemCount: completedMatch.length,
                     itemBuilder: (context, i) {
                       return Container(
-                        margin: EdgeInsets.all(25.0),
+                        margin: EdgeInsets.all(15.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
@@ -254,7 +261,7 @@ class _homePageState extends State<homePage> {
                                 children: [
                                   Container(
                                     height: 30,
-                                    width: 50,
+                                    width: screenWidth * 0.125,
                                     decoration: BoxDecoration(
                                         color: Colors.green,
                                         borderRadius: BorderRadius.circular(5)),
@@ -267,7 +274,7 @@ class _homePageState extends State<homePage> {
                                   ),
                                   Container(
                                     height: 30,
-                                    width: 50,
+                                    width: screenWidth * 0.125,
                                     decoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius: BorderRadius.circular(5)),
@@ -341,9 +348,6 @@ class _homePageState extends State<homePage> {
   }
 }
 
-List live_match = [
-  {"TeamA": "CSBS", "ScoreA": 5, "TeamB": "Mect", "ScoreB": 0}
-];
 List completedMatch = [
   {
     "TeamA": "CSBS",

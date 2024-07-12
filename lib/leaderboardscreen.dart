@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:trotters/default.dart';
+import 'package:trotters/mongo.dart';
 
 class leaderBoard extends StatefulWidget {
   const leaderBoard({super.key});
@@ -348,12 +349,6 @@ class _leaderBoardState extends State<leaderBoard> {
   }
 }
 
-List scorePoolA = [
-  {"name": "CSBS", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-  {"name": "Arc", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-  {"name": "CSE", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-  {"name": "Mech", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-];
 List scorePoolB = [
   {"name": "EEE", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
   {"name": "ECE", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},

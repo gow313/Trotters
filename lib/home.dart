@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:trotters/default.dart';
 import 'package:trotters/homepage.dart';
 import 'package:trotters/leaderboardscreen.dart';
 
@@ -32,7 +33,8 @@ class _HomeScreenState extends State<homeScreen> {
         return true;
       },
       child: Scaffold(
-        body: Center(
+        body: Container(
+          decoration: BoxDecoration(gradient: appcolor),
           child: _pages.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
