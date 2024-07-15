@@ -4,9 +4,13 @@ import 'package:trotters/mongo.dart';
 import 'package:trotters/route/approute.dart';
 import 'package:trotters/route/routing.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await MongoDatabase.connect();
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await MongoDatabase.connect();
+//   runApp(const MyApp());
+// }
+
+void main() {
   runApp(const MyApp());
 }
 

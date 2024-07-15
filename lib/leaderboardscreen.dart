@@ -14,6 +14,17 @@ class leaderBoard extends StatefulWidget {
 
 class _leaderBoardState extends State<leaderBoard> {
   @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    await MongoDatabase.pool();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;

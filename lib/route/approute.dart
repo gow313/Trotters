@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:trotters/adminpannelscreen.dart';
 import 'package:trotters/adminscreen.dart';
 import 'package:trotters/home.dart';
 
@@ -14,5 +15,6 @@ class AppRouter {
         transition: Transition.leftToRightWithFade),
     GetPage(name: AppRoute.splash, page: () => const splashScreen()),
     GetPage(name: AppRoute.admin, page: () => const Adminscreen()),
+    GetPage(name: AppRoute.adminpannel, page: () => const Adminpannelscreen())
   ];
 }
