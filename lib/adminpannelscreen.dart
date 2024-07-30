@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trotters/constant.dart';
 import 'package:trotters/default.dart';
 import 'package:trotters/mongo.dart';
+import 'package:trotters/route/routing.dart';
 
 class Adminpannelscreen extends StatefulWidget {
   const Adminpannelscreen({super.key});
@@ -38,6 +41,7 @@ class _AdminpannelscreenState extends State<Adminpannelscreen> {
                   child: InkWell(
                     onTap: () async {
                       await MongoDatabase.completedMatch();
+                      Get.offNamed(AppRoute.home);
                     },
                     child: Container(
                       height: 50,
@@ -246,6 +250,7 @@ class _AdminpannelscreenState extends State<Adminpannelscreen> {
                         InkWell(
                           onTap: () {
                             statu();
+                            Get.offNamed(AppRoute.home);
                           },
                           child: Align(
                             alignment: Alignment.center,

@@ -11,8 +11,8 @@ class AppRouter {
     GetPage(
         name: AppRoute.home,
         page: () => const homeScreen(),
-        transitionDuration: Duration(seconds: 3),
-        transition: Transition.leftToRightWithFade),
+        transitionDuration: Duration(seconds: 1),
+        transition: Transition.fadeIn),
     GetPage(name: AppRoute.splash, page: () => const splashScreen()),
     GetPage(name: AppRoute.admin, page: () => const Adminscreen()),
     GetPage(name: AppRoute.adminpannel, page: () => const Adminpannelscreen())

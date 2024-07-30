@@ -3,6 +3,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trotters/default.dart';
+import 'package:trotters/mongo.dart';
 import 'package:trotters/route/routing.dart';
 
 class Adminscreen extends StatefulWidget {
@@ -13,6 +14,8 @@ class Adminscreen extends StatefulWidget {
 }
 
 class _AdminscreenState extends State<Adminscreen> {
+  TextEditingController username = new TextEditingController();
+  TextEditingController password = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -51,6 +54,7 @@ class _AdminscreenState extends State<Adminscreen> {
                           borderRadius: BorderRadius.circular(3)),
                       child: Center(
                           child: TextFormField(
+                        controller: username,
                         decoration: InputDecoration(border: InputBorder.none),
                       )),
                     ),
@@ -75,6 +79,7 @@ class _AdminscreenState extends State<Adminscreen> {
                               borderRadius: BorderRadius.circular(3)),
                           child: Center(
                               child: TextFormField(
+                            controller: password,
                             decoration:
                                 InputDecoration(border: InputBorder.none),
                           )),
@@ -86,7 +91,10 @@ class _AdminscreenState extends State<Adminscreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(AppRoute.adminpannel);
+                        if (username.text == admincredit[0]["username"] &&
+                            password.text == admincredit[0]["password"]) {
+                          Get.toNamed(AppRoute.adminpannel);
+                        }
                       },
                       child: Container(
                         height: 50,

@@ -360,9 +360,41 @@ class _leaderBoardState extends State<leaderBoard> {
   }
 }
 
-List scorePoolB = [
-  {"name": "EEE", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-  {"name": "ECE", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-  {"name": "IT", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-  {"name": "Mect", "MatchCount": 3, "Won": 3, "loss": 4, "Draw": 3, "point": 4},
-];
+// List scorePoolB = [
+//   {
+//     "name": "EEE",
+//     "MatchCount": 0,
+//     "Won": 0,
+//     "loss": 0,
+//     "Draw": 0,
+//     "point": 0,
+//     "pool": "B"
+//   },
+//   {
+//     "name": "ECE",
+//     "MatchCount": 0,
+//     "Won": 0,
+//     "loss": 0,
+//     "Draw": 0,
+//     "point": 0,
+//     "pool": "B"
+//   },
+//   {
+//     "name": "IT",
+//     "MatchCount": 0,
+//     "Won": 0,
+//     "loss": 0,
+//     "Draw": 0,
+//     "point": 0,
+//     "pool": "B"
+//   },
+//   {
+//     "name": "Mect",
+//     "MatchCount": 0,
+//     "Won": 0,
+//     "loss": 0,
+//     "Draw": 0,
+//     "point": 0,
+//     "pool": "B"
+//   },
+// ];

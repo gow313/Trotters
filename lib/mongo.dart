@@ -5,24 +5,26 @@ import 'package:trotters/constant.dart';
 
 List live_match = [];
 List scorePoolA = [];
+List scorePoolB = [];
+List admincredit = [];
 
 class MongoDatabase {
   static Db? db;
-  static DbCollection? match;
-  static DbCollection? poola;
+  static DbCollection? match = db!.collection(COLLECTION_NAME);
+  static DbCollection? poola = db!.collection(poolaCollection);
+  static DbCollection? poolb = db!.collection(poolbCollection);
+  static DbCollection? admin = db!.collection(adminLog);
 
   static Future<void> connect() async {
     db = await Db.create(MONGO_URL);
     await db!.open();
     inspect(db);
-    match = db!.collection(COLLECTION_NAME);
-    poola = db!.collection(poolaCollection);
-    // var liveMatch = await collection.find().toList();
-    // var poolateams = await poolacollection.find().toList();
-    // live_match.clear();
-    // scorePoolA.clear();
-    // live_match.addAll(liveMatch);
-    // scorePoolA.addAll(poolateams);
+  }
+
+  static Future<void> adminLogin() async {
+    await connect();
+    var credentials = await admin!.find().toList();
+    admincredit.addAll(credentials);
   }
 
   static Future<void> addLive() async {
@@ -41,9 +43,12 @@ class MongoDatabase {
     try {
       await connect();
       var selector = where.sortBy('point', descending: true);
-      var matches = await poola!.find(selector).toList();
+      var matchesA = await poola!.find(selector).toList();
+      var matchesB = await poolb!.find(selector).toList();
       scorePoolA.clear();
-      scorePoolA.addAll(matches);
+      scorePoolB.clear();
+      scorePoolA.addAll(matchesA);
+      scorePoolB.addAll(matchesB);
     } catch (e) {
       log('Error in addLive: $e');
       rethrow;
@@ -64,6 +69,10 @@ class MongoDatabase {
         await poola?.update(
             where.eq('name', teamB), modify.inc("MatchCount", 1));
         if (firstDoc['pool'] == "A") {
+          await poola?.update(
+              where.eq('name', teamA), modify.inc("MatchCount", 1));
+          await poola?.update(
+              where.eq('name', teamB), modify.inc("MatchCount", 1));
           if (scA > scB) {
             await poola?.update(where.eq('name', teamA), modify.inc("Won", 1));
             await poola?.update(
@@ -80,6 +89,27 @@ class MongoDatabase {
             await poola?.update(
                 where.eq('name', teamB), modify.inc("point", 1));
             await poola?.update(
+                where.eq('name', teamA), modify.inc("point", 1));
+          }
+        } else {
+          await poolb?.update(
+              where.eq('name', teamA), modify.inc("MatchCount", 1));
+          if (scA > scB) {
+            await poolb?.update(where.eq('name', teamA), modify.inc("Won", 1));
+            await poolb?.update(
+                where.eq('name', teamA), modify.inc("point", 2));
+            await poolb?.update(where.eq('name', teamB), modify.inc("loss", 1));
+          } else if (scA < scB) {
+            await poolb?.update(where.eq('name', teamB), modify.inc("Won", 1));
+            await poolb?.update(
+                where.eq('name', teamB), modify.inc("point", 2));
+            await poolb?.update(where.eq('name', teamA), modify.inc("loss", 1));
+          } else if (scA == scB) {
+            await poolb?.update(where.eq('name', teamB), modify.inc("Draw", 1));
+            await poolb?.update(where.eq('name', teamA), modify.inc("Draw", 1));
+            await poolb?.update(
+                where.eq('name', teamB), modify.inc("point", 1));
+            await poolb?.update(
                 where.eq('name', teamA), modify.inc("point", 1));
           }
         }
