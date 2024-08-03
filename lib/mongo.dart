@@ -94,6 +94,8 @@ class MongoDatabase {
         } else {
           await poolb?.update(
               where.eq('name', teamA), modify.inc("MatchCount", 1));
+          await poolb?.update(
+              where.eq('name', teamB), modify.inc("MatchCount", 1));
           if (scA > scB) {
             await poolb?.update(where.eq('name', teamA), modify.inc("Won", 1));
             await poolb?.update(
