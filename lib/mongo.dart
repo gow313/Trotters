@@ -22,9 +22,13 @@ class MongoDatabase {
   }
 
   static Future<void> adminLogin() async {
-    await connect();
-    var credentials = await admin!.find().toList();
-    admincredit.addAll(credentials);
+    try {
+      await connect();
+      var credentials = await admin!.find().toList();
+      admincredit.addAll(credentials);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   static Future<void> addLive() async {

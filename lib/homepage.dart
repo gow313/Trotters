@@ -259,7 +259,7 @@ class _homePageState extends State<homePage> {
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
+                        childAspectRatio: 0.97, crossAxisCount: 2),
                     shrinkWrap: true,
                     itemCount: completedMatch.length,
                     itemBuilder: (context, i) {
